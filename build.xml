@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="image-split" default="initJar" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+	<property name="maven.lib" value="${basedir}/lib"/>
+	
+	<target name="initJar">
+		<mkdir dir="${maven.lib}" />
+		<artifact:pom id="gameHall.pom" file="pom.xml" />
+		<artifact:dependencies filesetId="gameHall.deps" pomRefId="gameHall.pom" />
+		<delete dir="${maven.lib}"/>
+		<copy todir="${maven.lib}" flatten="true" overwrite="true">
+			<fileset refid="gameHall.deps" />
+		</copy>
+	</target>
+	
+</project>
